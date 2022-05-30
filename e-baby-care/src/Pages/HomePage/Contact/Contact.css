@@ -3,6 +3,8 @@
     display: flex;
     height: 80vh;
     margin-top: 4rem;
+      /* scroll */
+  padding-top: 3rem;
 }
 
 .c-right{
@@ -12,11 +14,13 @@
     flex: 1;
 }
 
-.c-right>form{
-display: flex;
-flex-direction: column;
-gap: 2rem ;
-align-items: center;
+.c-right>form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    
 }
 
 .c-right .user{
@@ -26,15 +30,27 @@ align-items: center;
     outline: none;
     border: 2px solid var(--orange);
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 16px;   
 }
 
 textarea{
     height: 4rem!important;
 }
 
-.pink{
+.c-blur1{
     top: 1rem;
     left: 8rem;
 }
 
+@media screen and (max-width: 480px) {
+    .contact-form{
+        padding: 0;
+        flex-direction: column;
+        gap: 5rem;
+        height: 40rem;
+    }
+    .c-right .user{
+        width: 16rem;
+    }
+
+}   

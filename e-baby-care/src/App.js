@@ -13,11 +13,16 @@ function App() {
       <BrowserRouter>
         {/* <Navbar /> */}
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/appointment" element={<Appointment />} />
+          {/* Login\Logout */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+          {/* Homepage */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/appointment" element={<Appointment />} />
+
+          {/* Admin DashBoard */}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>
