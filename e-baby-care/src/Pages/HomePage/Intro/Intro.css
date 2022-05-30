@@ -100,9 +100,11 @@
       height: 64rem;
     }
   
-    .i-right * {
+    .i-right{
       transform: scale(0.8);
-      left: 0rem;
+      left: -5rem;
+      top: -5rem;
+
       /* display: none; */
     }
     .i-right .blur {
