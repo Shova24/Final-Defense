@@ -14,7 +14,8 @@ import glassesimoji from '../../../img/HomePage/glassesimoji.png';
 import Floating from '../FloatingDiv/Floating';
 
 
-import { Grid, Paper, Typography,Container, Button  } from "@mui/material";
+import { Grid, Paper, Typography,Container, Button, Link  } from "@mui/material";
+import { NavLink } from 'react-router-dom';
 
  
 
@@ -33,7 +34,12 @@ const Intro = () => {
                                     <span>We Are The Best In Town</span>
                                     <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officia saepe laudantium, dolore nesciunt quidem?</span>
                                 </div>
-                                <button className="button i-button">Hire babySitter</button>
+                                {/* <Link to='login'>   <button className="button i-button">Hire babySitter</button></Link> */}
+                                <NavLink to="login">
+            <Button variant='contained' color="inherit">Hire babySitter</Button>
+          </NavLink>
+                            
+                             
 
                                 <div className="i-icons">
                                     <img src={Github} alt="" />
