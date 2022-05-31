@@ -35,7 +35,7 @@ const Navbar = () => {
 
 
                         {user?.email ? (
-                            <Link spy={true} onClick={logout} className="hov" to='testimonial' smooth={true}activeClass='activeClass'>
+                            <Link spy={true} onClick={logout} className="hov" smooth={true}activeClass='activeClass'>
                                 <li>logout</li></Link>) : (
                         <NavLink to="/login" className="hov">
                             <li>login</li>

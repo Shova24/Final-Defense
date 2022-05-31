@@ -1,14 +1,26 @@
 import { UilEstate } from "@iconscout/react-unicons";
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  CircularProgress,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
+
 import { Container } from "@mui/system";
 import React from "react";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 import Cover from "../../../img/HomePage/Cover2.png";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
+  const { user, setUser, loginUser, isLoading, authError, signInWithGoogle } =
+    useAuth();
 
   const handleOnChange = (e) => {
     const field = e.target.name;
@@ -18,9 +30,18 @@ const Login = () => {
     setLoginData(newLoginData);
   };
   const handleLogin = (e) => {
-    alert("hyyy");
+    // alert("hyyy");
     e.preventDefault();
+    loginUser(loginData.email, loginData.password);
   };
+  //google sign in////////////////////////////////////////////////////////////////
+  const handleGoogleSignIn = () => {
+    signInWithGoogle().then((result) => {
+      setUser(result.user);
+      Navigate("/");
+    });
+  };
+
   return (
     <>
       <Container>
@@ -79,8 +100,16 @@ const Login = () => {
                 {" "}
                 Login
               </Button>
+              {isLoading && <CircularProgress disableShrink />};
+              {user?.email && (
+                <Alert severity="success">This is a success</Alert>
+              )}
+              {authError && <Alert severity="error">{authError}!</Alert>}
             </form>
-            ;
+            <p>---------------</p>
+            <Button variant="contained" onClick={handleGoogleSignIn}>
+              Google
+            </Button>
           </Grid>
           <Grid item xs={12} md={6}>
             <img src={Cover} style={{ width: "100%" }} alt="" />
