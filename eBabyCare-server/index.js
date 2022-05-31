@@ -3,6 +3,10 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 
+const port = process.env.PORT || 5000;
+app.use(cors());
+app.use(express.json());
+
 //database connection
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
@@ -12,25 +16,23 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1,
 });
-console.log(uri);
-
 async function run() {
   try {
     await client.connect();
     // console.log("database connected successfully");
     const database = client.db("eBabyCare"); //database
     const appointmentsCollection = database.collection("appointments");
-
-    app.post("/appointments", async (req, res) => {});
+    app.post("/appointments", async (req, res) => {
+      const appointment = req.body;
+      const result = await appointmentsCollection.insertOne(appointment);
+      console.log(result);
+      res.json(result);
+    });
   } finally {
     // await client.close();
   }
 }
 run().catch(console.dir);
-
-const port = process.env.PORT || 5000;
-
-app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Hello eBabyCare");

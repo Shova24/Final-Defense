@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import BookingModal from "../BookingModal/BookingModal";
 
-const Booking = ({ booking, space, date }) => {
+const Booking = ({ date, booking, space, setBookingSuccess }) => {
   const { name, time } = booking;
   // console.log(time);
 
@@ -50,6 +50,7 @@ const Booking = ({ booking, space, date }) => {
         open={open}
         date={date}
         handleClose={handleClose}
+        setBookingSuccess={setBookingSuccess}
       />
     </>
   );

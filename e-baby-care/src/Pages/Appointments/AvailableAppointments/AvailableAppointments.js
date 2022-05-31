@@ -11,6 +11,9 @@ import Paper from "@mui/material/Paper";
 import { Container } from "@mui/system";
 import React from "react";
 import Booking from "../Booking/Booking";
+import { useState } from "react";
+import { CircularProgress } from "@material-ui/core";
+import { Alert } from "@mui/material";
 const bookings = [
   {
     id: 1,
@@ -69,12 +72,25 @@ const AvailableAppointments = ({ date }) => {
       };
     }
   };
+
+  const [bookingSuccess, setBookingSuccess] = useState(false);
   return (
     <>
       <Container>
         <h3>Available : {date.toDateString()}</h3>
+
+        {bookingSuccess && (
+          <Alert severity="success">
+            Booking requeest sent.. Wait for our call.
+          </Alert>
+        )}
         {bookings.map((booking) => (
-          <Booking key={booking.id} booking={booking} date={date}></Booking>
+          <Booking
+            key={booking.id}
+            booking={booking}
+            date={date}
+            setBookingSuccess={setBookingSuccess}
+          ></Booking>
         ))}
       </Container>
 
