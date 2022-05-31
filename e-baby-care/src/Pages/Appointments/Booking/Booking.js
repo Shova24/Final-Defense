@@ -7,7 +7,7 @@ import BookingModal from "../BookingModal/BookingModal";
 
 const Booking = ({ booking, space, date }) => {
   const { name, time } = booking;
-  console.log(time);
+  // console.log(time);
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -15,7 +15,7 @@ const Booking = ({ booking, space, date }) => {
 
   return (
     <>
-      <Grid item xs={6} sm={4} md={3}>
+      {/* <Grid item xs={6} sm={4} md={3}>
         <Paper elevation={3} sx={{ py: 5 }}>
           <Typography variant="h3" gutterBottom component="div">
             {name}
@@ -36,7 +36,7 @@ const Booking = ({ booking, space, date }) => {
             Appointment
           </Button>
         </Paper>
-      </Grid>
+      </Grid> */}
 
       <BookingModal
         name={name}

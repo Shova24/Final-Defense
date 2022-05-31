@@ -9,7 +9,7 @@ const Calender = (props) => {
   const { date, setDate } = props;
 
   // const [date, setDate] = React.useState(new Date());
-  console.log("props : ", props.date);
+  // console.log("props : ", props.date);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDatePicker

@@ -7,6 +7,7 @@ import HomePage from "./Pages/HomePage/HomePage/HomePage";
 import Appointment from "./Pages/Appointments/Appointment/Appointment";
 import Dashboard from "./Pages/Admin/DashBoard/Dashboard";
 import AuthProvider from "./Context/AuthProvider/AuthProvider";
+import ParentHome from "./Pages/Parents/ParentHome/ParentHome";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
 
             {/* Admin DashBoard */}
             <Route path="/dashboard" element={<Dashboard />} />
+
+            {/* Parent Routes */}
+            <Route exact path="/parenthome" element={<ParentHome />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

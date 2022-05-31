@@ -12,15 +12,25 @@ import { Container } from "@mui/system";
 import React from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 
 import Cover from "../../../img/HomePage/Cover2.png";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({});
-  const { user, setUser, loginUser, isLoading, authError, signInWithGoogle } =
-    useAuth();
+  const {
+    user,
+    setUser,
+    loginUser,
+    isLoading,
+    authError,
+    setAuthError,
+    signInWithGoogle,
+    isValid,
+  } = useAuth();
 
   const handleOnChange = (e) => {
     const field = e.target.name;
@@ -29,10 +39,34 @@ const Login = () => {
     newLoginData[field] = value;
     setLoginData(newLoginData);
   };
-  const handleLogin = (e) => {
-    // alert("hyyy");
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    loginUser(loginData.email, loginData.password);
+    setAuthError("");
+    try {
+      await loginUser(loginData.email, loginData.password);
+      console.log("login : ", user);
+      console.log(isValid);
+      if (isValid) {
+        navigate("/appointment");
+      } else {
+        navigate("/login");
+      }
+    } catch (err) {
+      setAuthError(err.message);
+    }
+    // loginUser(loginData.email, loginData.password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const user = userCredential.user;
+    //     console.log(user);
+    //     setUser(user);
+    //     navigate("/appointment");
+    //   })
+    //   .catch((error) => {
+    //     const errorMessage = error.message;
+    //     authError(errorMessage);
+    //   });
   };
   //google sign in////////////////////////////////////////////////////////////////
   const handleGoogleSignIn = () => {

@@ -16,41 +16,23 @@ const AppointmentsHeader = ({ date, setDate }) => {
   //   console.log(date);
 
   return (
-    <Container>
-      <div
-        className="menuItem"
-        style={{ paddingTop: "2rem", marginBottom: "2rem" }}
-      >
-        <UilEstate />
-        <NavLink to="/">
-          <Button
-            style={{
-              color: "black",
-              textDecoration: "none",
-            }}
-          >
-            Homepage
-          </Button>
-        </NavLink>
-      </div>
+    // <Container
+    //   sx={{
+    //     textAlign: "center",
+    //     alignItems: "center",
+    //     marginTop: "20%",
+    //   }}
+    // >
+    //   {" "}
 
-      <Grid container justify="center" spacing={2}>
-        <Grid xs={12} md={6}>
-          <Container
-            sx={{
-              textAlign: "center",
-              alignItems: "center",
-              marginTop: "20%",
-            }}
-          >
-            <Calender date={date} setDate={setDate} />
-          </Container>
-        </Grid>
-        <Grid xs={12} md={6}>
-          <img style={{ width: "100%" }} src={Cover} alt="" />
-        </Grid>
-      </Grid>
-    </Container>
+    // </Container>
+    <>
+      <div style={{ marginTop: "2rem" }}>
+        <h1>Book a BabySitter</h1>
+        <hr />
+        <Calender date={date} setDate={setDate} />
+      </div>
+    </>
   );
 };
 

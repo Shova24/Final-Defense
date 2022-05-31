@@ -9,6 +9,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 initializeFirebase();
 
@@ -16,6 +17,8 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
+  const [isValid, setIsvalid] = useState(true);
+
   const [isLoading, setIsLoading] = useState(true);
   const [authError, setAuthError] = useState("");
 
@@ -34,6 +37,7 @@ const useFirebase = () => {
       })
       .finally(() => setIsLoading(false));
   };
+
   const signInWithGoogle = () => {
     setIsLoading(true);
     signInWithPopup(auth, googleProvider)
@@ -75,18 +79,23 @@ const useFirebase = () => {
   };
 
   const loginUser = (email, password) => {
+    setIsvalid(false);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         setAuthError("");
+        setIsvalid(true);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setIsvalid(false);
         setAuthError(errorMessage);
       })
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return {
@@ -97,7 +106,9 @@ const useFirebase = () => {
     logout,
     loginUser,
     authError,
+    setAuthError,
     signInWithGoogle,
+    isValid,
   };
 };
 

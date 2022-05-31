@@ -18,7 +18,7 @@ const style = {
 };
 
 const BookingModal = ({ time, name, date, open, handleClose }) => {
-  console.log("date : ", name, time);
+  // console.log("date : ", name, time);
   const handleSubmit = (e) => {
     e.preventDefault();
 

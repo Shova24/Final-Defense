@@ -45,6 +45,30 @@ export const SidebarData = [
   },
 ];
 
+// ParentSidebar Data
+export const ParentSidebarData = [
+  {
+    icon: UilEstate,
+    heading: "Dashboard",
+  },
+  {
+    icon: UilClipboardAlt,
+    heading: "Appointments",
+  },
+  {
+    icon: UilUsersAlt,
+    heading: "Profiles",
+  },
+  {
+    icon: UilSignOutAlt,
+    heading: "Homepage",
+  },
+  {
+    icon: UilPackage,
+    heading: "Review",
+  },
+];
+
 // Analytics Cards Data
 export const cardsData = [
   {
