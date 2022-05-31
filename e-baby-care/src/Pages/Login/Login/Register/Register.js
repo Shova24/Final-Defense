@@ -7,6 +7,7 @@ import useAuth from "../../../../Hooks/useAuth";
 import Cover from "../../../../img/HomePage/Cover2.png";
 
 import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
@@ -26,7 +27,7 @@ const Register = () => {
       return;
     }
     console.log("User : ", loginData.email, loginData.password);
-    registerUser(loginData.email, loginData.password);
+    registerUser(loginData.email, loginData.password, loginData.name);
     e.preventDefault();
   };
 
@@ -40,6 +41,15 @@ const Register = () => {
             </Typography>
             {!isLoading && (
               <form onSubmit={handleLogin}>
+                <TextField
+                  sx={{ width: "75%", m: 1 }}
+                  id="standard-basic"
+                  label="Your Name"
+                  name="name"
+                  onBlur={handleOnBlur}
+                  variant="standard"
+                />
+                <br />
                 <TextField
                   sx={{ width: "75%", m: 1 }}
                   id="standard-basic"

@@ -17,7 +17,11 @@ console.log(uri);
 async function run() {
   try {
     await client.connect();
-    console.log("database connected successfully");
+    // console.log("database connected successfully");
+    const database = client.db("eBabyCare"); //database
+    const appointmentsCollection = database.collection("appointments");
+
+    app.post("/appointments", async (req, res) => {});
   } finally {
     // await client.close();
   }
@@ -29,7 +33,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Hello doctors portal");
+  res.send("Hello eBabyCare");
 });
 
 app.listen(port, () => {

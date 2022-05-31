@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -22,13 +23,32 @@ const useFirebase = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [authError, setAuthError] = useState("");
 
-  const registerUser = (email, password) => {
+  // const navigate = useNavigate();
+
+  const registerUser = (email, password, name) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
         setAuthError("");
+        // const newUser = { email, displayName: name };
+        // setUser(newUser);
+        // //send name to firebase after creation
+        // updateProfile(auth.currentUser, {
+        //   displayName: "Jane Q. User",
+        //   // photoURL: "https://example.com/jane-q-user/profile.jpg"
+        // })
+        //   .then(() => {
+        //     // Profile updated!
+        //     // ...
+        //   })
+        //   .catch((error) => {
+        //     // An error occurred
+        //     // ...
+        //   });
+
+        // navigate("/parenthome");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -40,6 +60,7 @@ const useFirebase = () => {
 
   const signInWithGoogle = () => {
     setIsLoading(true);
+
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;

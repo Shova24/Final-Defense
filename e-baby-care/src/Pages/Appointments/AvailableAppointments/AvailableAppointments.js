@@ -77,6 +77,7 @@ const AvailableAppointments = ({ date }) => {
           <Booking key={booking.id} booking={booking} date={date}></Booking>
         ))}
       </Container>
+
       <Container>
         <div className="Table">
           <h3>Recent Orders</h3>

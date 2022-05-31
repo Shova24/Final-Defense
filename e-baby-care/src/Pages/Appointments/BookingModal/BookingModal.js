@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import useAuth from "../../../Hooks/useAuth";
 
 const style = {
   position: "absolute",
@@ -18,15 +19,39 @@ const style = {
 };
 
 const BookingModal = ({ time, name, date, open, handleClose }) => {
-  // console.log("date : ", name, time);
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const { user } = useAuth();
 
-    //collect data send to
-
-    alert("submitting");
-    handleClose();
+  const initialInfo = {
+    parentname: user.displayName,
+    parentemail: user.email,
+    phone: "",
   };
+  const [bookingInfo, setBookingInfo] = useState(initialInfo);
+  const handleSubmit = (e) => {
+    console.log("clicked");
+    //collect data send to
+    const appointment = {
+      ...bookingInfo,
+      time,
+      serviceName: name,
+      date,
+      statusdate: date.toLocaleString(),
+    };
+    console.log(appointment);
+    handleClose();
+
+    e.preventDefault();
+  };
+
+  const handleOnBlur = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newInfo = { ...bookingInfo };
+    newInfo[field] = value;
+    console.log(newInfo);
+    setBookingInfo(newInfo);
+  };
+
   return (
     <Modal
       keepMounted
@@ -39,38 +64,59 @@ const BookingModal = ({ time, name, date, open, handleClose }) => {
         <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
           {name}
         </Typography>
+        <form>
+          <TextField
+            disabled
+            sx={{ width: "90%", m: 1 }}
+            id="outlined-size-small"
+            defaultValue={time}
+            size="small"
+          />
 
-        <TextField
-          disabled
-          id="filled-hidden-label-small"
-          defaultValue={time}
-          variant="filled"
-          size="small"
-        />
-
-        <TextField
-          hiddenLabel
-          defaultValue="your Name"
-          variant="filled"
-          size="small"
-        />
-        <TextField
-          hiddenLabel
-          defaultValue="your Email"
-          variant="filled"
-          size="small"
-        />
-        <TextField
-          disabled
-          defaultValue={date.toDateString()}
-          variant="filled"
-          size="small"
-        />
-        <br />
-
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
+          <TextField
+            sx={{ width: "90%", m: 1 }}
+            id="outlined-size-small"
+            placeholder="you name"
+            name="parentname"
+            defaultValue={user.displayName}
+            size="small"
+            onBlur={handleOnBlur}
+          />
+          <TextField
+            sx={{ width: "90%", m: 1 }}
+            id="outlined-size-small"
+            placeholder="you email"
+            name="parentemail"
+            defaultValue={user.email}
+            size="small"
+            onBlur={handleOnBlur}
+          />
+          <TextField
+            sx={{ width: "90%", m: 1 }}
+            id="outlined-size-small"
+            placeholder="Your Phone"
+            name="phone"
+            size="small"
+            onBlur={handleOnBlur}
+          />
+          <TextField
+            disabled
+            sx={{ width: "90%", m: 1 }}
+            id="outlined-size-small"
+            defaultValue={date.toDateString()}
+            size="small"
+            onBlur={handleOnBlur}
+          />
+          <br />
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "orange", clor: "white", marginTop: "1rem" }}
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </form>
       </Box>
     </Modal>
   );

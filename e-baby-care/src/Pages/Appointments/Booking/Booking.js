@@ -37,6 +37,12 @@ const Booking = ({ booking, space, date }) => {
           </Button>
         </Paper>
       </Grid> */}
+      <Button
+        color="inherit"
+        variant="contained"
+        sx={{ backgroundColor: "orange" }}
+        onClick={handleOpen}
+      ></Button>
 
       <BookingModal
         name={name}
