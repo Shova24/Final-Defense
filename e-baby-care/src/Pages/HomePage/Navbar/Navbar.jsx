@@ -26,17 +26,18 @@ const Navbar = () => {
                         </Link>
 
                         <Link spy={true} className="hov" to='testimonial' smooth={true}activeClass='activeClass'>
-                        <li>Testimonials</li>
+                        <li>Reviews</li>
                         </Link>
 
-                        <Link spy={true} className="hov" to='portfolio' smooth={true}activeClass='activeClass'>
+                        <Link spy={true} className="hov" to='contact' smooth={true}activeClass='activeClass'>
                         <li>contact</li>
                         </Link>
 
 
                     </ul>
                 </div>
-                <button className="button n-button">Contact</button>
+                <Link  spy={true} smooth={true}activeClass='activeClass' to='contact'><button className="button n-button">Contact</button></Link>
+                
             </div>
        </div>
 

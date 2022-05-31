@@ -18,7 +18,8 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           {/* Homepage */}
-          <Route path="/" element={<HomePage />} />
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/appointment" element={<Appointment />} />
 
           {/* Admin DashBoard */}
