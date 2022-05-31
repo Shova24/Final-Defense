@@ -46,7 +46,7 @@ const Login = () => {
                 id="standard-basic"
                 label="Your Email"
                 name="email"
-                onChange={handleOnChange}
+                onBlur={handleOnChange}
                 variant="standard"
               />
               <br />
@@ -56,7 +56,7 @@ const Login = () => {
                 label="Password"
                 type="password"
                 name="password"
-                onChange={handleOnChange}
+                onBlur={handleOnChange}
                 autoComplete="current-password"
                 variant="standard"
               />

@@ -7,8 +7,10 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import useAuth from "../../../Hooks/useAuth";
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -32,9 +34,20 @@ const Navbar = () => {
             {" "}
             <Button color="inherit">Appointment</Button>
           </Link>
-          <NavLink to="login">
+          {/* <NavLink to="login">
             <Button color="inherit">Login</Button>
-          </NavLink>
+          </NavLink> */}
+          {user?.email ? (
+            <Button variant="contained" onClick={logout}>
+              Logout
+            </Button>
+          ) : (
+            <NavLink to="/login">
+              <Button style={{ textDecoration: "none", color: "white" }}>
+                Login
+              </Button>
+            </NavLink>
+          )}
         </Toolbar>
       </AppBar>
     </Box>

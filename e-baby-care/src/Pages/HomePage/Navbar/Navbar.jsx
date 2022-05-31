@@ -2,8 +2,12 @@ import React from 'react';
 
 import "./Navbar.css";
 import {Link} from 'react-scroll';
+import useAuth from '../../../Hooks/useAuth';
+import { NavLink } from 'react-router-dom';
+import Button from "@mui/material/Button";
 
 const Navbar = () => {
+    const {user, logout} = useAuth();
     return (
        <div className="n-wrapper">
            <div className="n-left">
@@ -28,6 +32,16 @@ const Navbar = () => {
                         <Link spy={true} className="hov" to='testimonial' smooth={true}activeClass='activeClass'>
                         <li>Reviews</li>
                         </Link>
+
+
+                        {user?.email ? (
+                            <Link spy={true} onClick={logout} className="hov" to='testimonial' smooth={true}activeClass='activeClass'>
+                                <li>logout</li></Link>) : (
+                        <NavLink to="/login" className="hov">
+                            <li>login</li>
+                        </NavLink>)}
+
+
 
                         <Link spy={true} className="hov" to='contact' smooth={true}activeClass='activeClass'>
                         <li>contact</li>

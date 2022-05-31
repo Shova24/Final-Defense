@@ -30,6 +30,7 @@ npm install --save react-apexcharts apexcharts
 
 -Backend Server Setup packages:
 
+npm install firebase
 npm i express cors dotenv mongodb
 "start": "node index.js",
 "start-dev": "nodemon index.js",
