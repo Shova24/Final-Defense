@@ -4,12 +4,10 @@ import HeartEmoji from '../../../img/HomePage/heartemoji.png';
 import Glasses from '../../../img/HomePage/heartemoji.png';
 import Humble from '../../../img/HomePage/heartemoji.png';
 import Card from '../Card/Card';
-import shova from './shova.pdf';
+
 
 import "./Services.css";
 
-
-// import { themeContext } from "../../Context";
 import { motion } from "framer-motion";
 
 
@@ -46,8 +44,8 @@ const Services = () => {
         >
           <Card
             emoji={HeartEmoji}
-            heading={"Design"}
-            detail={"Figma, Sketch, Photoshop, Adobe Illustrator, Adobe xd"}
+            heading={"Trusted Care"}
+            detail={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.ntes, nascetur"}
           />
         </motion.div>
         {/* second card */}
@@ -58,8 +56,8 @@ const Services = () => {
         >
           <Card
             emoji={Glasses}
-            heading={"Developer"}
-            detail={"Html, Css, JavaScript, React, Nodejs, Express"}
+            heading={"Well Certified"}
+            detail={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.ntes, nascetur"}
           />
         </motion.div>
         {/* 3rd */}
@@ -70,9 +68,8 @@ const Services = () => {
         >
           <Card
             emoji={Humble}
-            heading={"UI/UX"}
-            detail={
-              "Lorem ispum dummy text are usually use in section where we need some random text"
+            heading={"Professional Nanny"}
+            detail={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.ntes, nascetur"
             }
             color="rgba(252, 166, 31, 0.45)"
           />
