@@ -42,7 +42,7 @@ const Review = () => {
         if (data.insertedId) {
             setDone(true)
         }
-        console.log("from modal : ", data);
+        console.log("from post parent : ", data);
       });
       console.log("text ", text);
     }
@@ -59,8 +59,6 @@ let len = review.length;
           <span>{done && "Thanks for your kind review.."}</span>
         </form>
         <div>
-
-
           length : {len}
         </div>
 

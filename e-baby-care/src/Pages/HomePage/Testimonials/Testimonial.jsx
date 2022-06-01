@@ -10,41 +10,22 @@ import profilePic1 from "../../../img/HomePage/profile1.jpg";
 
 const Testimonial = () => {
 
-  const clients = [
-    {
-      img: profilePic1,
-      review:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex officiis molestiae quod tempora laudantium, cumque error a nisi placeat quae exercitationem, maiores reiciendis! Eaque dicta minima, iure maiores dolorum sed.",
-    },
-    {
-      img: profilePic1,
-      review:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex officiis molestiae quod tempora laudantium, cumque error a nisi placeat quae exercitationem, maiores reiciendis! Eaque dicta minima, iure maiores dolorum sed.",
-    },
-    {
-      img: profilePic1,
-      review:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex officiis molestiae quod tempora laudantium, cumque error a nisi placeat quae exercitationem, maiores reiciendis! Eaque dicta minima, iure maiores dolorum sed.",
-    },
-    {
-      img: profilePic1,
-      review:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex officiis molestiae quod tempora laudantium, cumque error a nisi placeat quae exercitationem, maiores reiciendis! Eaque dicta minima, iure maiores dolorum sed.",
-    },
-  ];
-
   const [ review, setReview] = useState({});
 
   useEffect(() => {
-    // const url = `http://localhost:5000/appointments?email=${user.email}`;
-    const url = `https://jsonplaceholder.typicode.com/posts`;
+    const url = `http://localhost:5000/reviews`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setReview(data));
   }, []);
 
-  console.log(review[0]);
-  console.log(review);
+  const items = []
+  for (const property in review) {
+    const element = review[property].text;
+    items.push(element);
+  }
+
+console.log(items);
   return (
     <div className="t-wrapper" id="testimonial">
       <div className="t-heading">
@@ -61,12 +42,12 @@ const Testimonial = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
       >
-        {clients.map((review, index) => {
+        {items.map((item) => {
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide >
               <div className="testimonial">
                 <img src={profilePic1} alt="" />
-                {/* <span>{review.title}</span> */}
+                <p>{item}</p>
               </div>
             </SwiperSlide>
           );
