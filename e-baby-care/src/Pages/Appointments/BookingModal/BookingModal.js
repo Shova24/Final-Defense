@@ -57,7 +57,7 @@ const BookingModal = ({
           setBookingSuccess(true);
           handleClose();
         }
-        console.log(data);
+        console.log("from modal : ", data);
       });
     // console.log(appointment);
 

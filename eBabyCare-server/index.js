@@ -22,10 +22,21 @@ async function run() {
     // console.log("database connected successfully");
     const database = client.db("eBabyCare"); //database
     const appointmentsCollection = database.collection("appointments");
+
+    app.get("/appointments", async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email };
+      console.log("query : ", query, email);
+      const cursor = appointmentsCollection.find(query);
+      const appointments = await cursor.toArray();
+      console.log(appointments);
+      res.json(appointments);
+    });
+
     app.post("/appointments", async (req, res) => {
       const appointment = req.body;
       const result = await appointmentsCollection.insertOne(appointment);
-      console.log(result);
+      // console.log(result);
       res.json(result);
     });
   } finally {

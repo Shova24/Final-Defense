@@ -7,10 +7,10 @@ import { UilSignOutAlt } from "@iconscout/react-unicons";
 import {ParentSidebarData} from "../../../Data/Data";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
+import { NavLink } from 'react-router-dom';
 
 const ParentSidebar = () => {
     const [selected, setSelected] = useState(0);
-
     const [expanded, setExpaned] = useState(true)
   
     const sidebarVariants = {
@@ -52,11 +52,50 @@ const ParentSidebar = () => {
                 <item.icon />
                 <span>{item.heading}</span>
               </div>
+              // <NavLink to='/' style={(true)=>{
+              //   (selected === index ){
+              //     // menuItem
+              //   display: 'flex' ,
+              //   alignItems: 'center' ,
+              //   gap: '1rem' ,
+              //   height: '2.5rem' ,
+              //   marginLeft: '2rem' ,
+              //   position: 'relative' ,
+              //   transition: 'all 300ms ease' ,
+              //   borderRadius: '0.7rem' ,
+              //   fontSize: '14px' ,
+              //   color:'black',
+              //   textDecoration: 'none',
+              //   }
+                
+    
+              // }}>
+              // <item.icon />
+              // <span>{item.heading}</span>
+              // </NavLink>
             );
           })}
   {/* signoutIcon */}
-  <div className="menuItem">
+        <div>
+          <NavLink to='/' style={{
+            display: 'flex' ,
+            alignItems: 'center' ,
+            gap: '1rem' ,
+            height: '2.5rem' ,
+            marginLeft: '2rem' ,
+            // position: 'relative' ,
+            transition: 'all 300ms ease' ,
+            borderRadius: '0.7rem' ,
+            fontSize: '14px' ,
+            color:'black',
+
+            position: 'absolute',
+            bottom: '2.3rem',
+            width: '100%',
+          }}>
           <UilSignOutAlt />
+          </NavLink>
+         
         </div>
         </div>
       </motion.div>

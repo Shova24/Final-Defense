@@ -9,21 +9,22 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 import { Container } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import Booking from "../Booking/Booking";
 import { useState } from "react";
 import { CircularProgress } from "@material-ui/core";
 import { Alert } from "@mui/material";
+import useAuth from "../../../Hooks/useAuth";
 const bookings = [
   {
     id: 1,
-    name: "name of booking",
+    name: "bookin1",
     time: "8.00 = 9.00",
     space: 20,
   },
   {
     id: 3,
-    name: "name of booking",
+    name: "name of booking2",
     time: "8.00 = 9.00",
     space: 20,
   },
@@ -74,10 +75,22 @@ const AvailableAppointments = ({ date }) => {
   };
 
   const [bookingSuccess, setBookingSuccess] = useState(false);
+  const { user } = useAuth();
+  const [appointments, setAppontments] = useState();
+  console.log(user.email);
+
+  useEffect(() => {
+    const url = `http://localhost:5000/appointments?email=${user.email}`;
+    // const url = `https://jsonplaceholder.typicode.com/posts/1`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setAppontments(data));
+  }, []);
   return (
     <>
       <Container>
         <h3>Available : {date.toDateString()}</h3>
+        <h5>App : {appointments}</h5>
 
         {bookingSuccess && (
           <Alert severity="success">
@@ -96,7 +109,7 @@ const AvailableAppointments = ({ date }) => {
 
       <Container>
         <div className="Table">
-          <h3>Recent Orders</h3>
+          <h3>Appointments List</h3>
           <TableContainer
             component={Paper}
             style={{ boxShadow: "0px 13px 20px 0px #80808029" }}
@@ -104,13 +117,15 @@ const AvailableAppointments = ({ date }) => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Product</TableCell>
-                  <TableCell align="left">Tracking ID</TableCell>
-                  <TableCell align="left">Date</TableCell>
+                  <TableCell>parent Name</TableCell>
+                  <TableCell align="left">User Phone</TableCell>
+                  <TableCell align="left">User email</TableCell>
+                  <TableCell align="left">User Phone</TableCell>
                   <TableCell align="left">Status</TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
               </TableHead>
+
               <TableBody style={{ color: "white" }}>
                 {rows.map((row) => (
                   <TableRow
@@ -121,6 +136,7 @@ const AvailableAppointments = ({ date }) => {
                       {row.name}
                     </TableCell>
                     <TableCell align="left">{row.trackingId}</TableCell>
+                    <TableCell align="left">{row.date}</TableCell>
                     <TableCell align="left">{row.date}</TableCell>
                     <TableCell align="left">
                       <span className="status" style={makeStyle(row.status)}>
