@@ -3,8 +3,8 @@ import { Container } from "@mui/system";
 import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import useAuth from "../../../../Hooks/useAuth";
-import Cover from "../../../../img/HomePage/Cover2.png";
+import useAuth from "../../../Hooks/useAuth";
+import Cover from "../../../img/HomePage/Cover2.png";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,7 @@ const Register = () => {
     setLoginData(newLoginData);
     console.log(newLoginData);
   };
+
   const handleLogin = (e) => {
     if (loginData.password !== loginData.password2) {
       alert(" password did not matched");

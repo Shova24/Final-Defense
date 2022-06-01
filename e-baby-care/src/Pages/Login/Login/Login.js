@@ -14,8 +14,8 @@ import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import useAuth from "../../../Hooks/useAuth";
 
+import useAuth from "../../../Hooks/useAuth";
 import Cover from "../../../img/HomePage/Cover2.png";
 
 const Login = () => {

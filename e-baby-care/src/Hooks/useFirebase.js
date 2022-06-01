@@ -1,3 +1,4 @@
+// import initializeFirebase from "../Pages/Login/Firebase/Firebase.init";
 import initializeFirebase from "../Pages/Login/Firebase/Firebase.init";
 import { useState, useEffect } from "react";
 import {
@@ -30,24 +31,9 @@ const useFirebase = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        console.log("register : ", user);
         setAuthError("");
-        // const newUser = { email, displayName: name };
-        // setUser(newUser);
-        // //send name to firebase after creation
-        // updateProfile(auth.currentUser, {
-        //   displayName: "Jane Q. User",
-        //   // photoURL: "https://example.com/jane-q-user/profile.jpg"
-        // })
-        //   .then(() => {
-        //     // Profile updated!
-        //     // ...
-        //   })
-        //   .catch((error) => {
-        //     // An error occurred
-        //     // ...
-        //   });
-
-        // navigate("/parenthome");
+        setUser(user);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -64,6 +50,7 @@ const useFirebase = () => {
       .then((result) => {
         const user = result.user;
         setAuthError("");
+        setUser(user);
       })
       .catch((error) => {
         // Handle Errors here.
@@ -104,6 +91,8 @@ const useFirebase = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        setUser(user);
+        console.log("logi in : ", user);
         setAuthError("");
         setIsvalid(true);
       })

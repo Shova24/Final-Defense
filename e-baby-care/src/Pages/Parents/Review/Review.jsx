@@ -1,49 +1,41 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Review.css';
 import useAuth from './../../../Hooks/useAuth'
+import Swiper, { Pagination } from 'swiper';
+import { SwiperSlide } from 'swiper/react';
+
+
 const Review = () => {
     const form = useRef();
     const {user} = useAuth();   
-    console.log('user : ',user.email);
-
+    // console.log('user : ',user.email);
 
     const [done, setDone] = useState(false)
-    const [ review, setReview] = useState({});
+    const [review, setReview] = useState({});
+    const [text, setText] = useState('');
 
-    const handlaleOnBlur = (e)=>{
-        const field = e.target.name;
-        const value = e.target.value;
-        const newReview = {...review};
-        newReview[field] = value;
-        setReview(newReview);
+    useEffect(() => {
+      const url = `http://localhost:5000/reviews`;
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => setReview(data));
+    }, []);
+    
+    // const array = review[0];
+    // const msg = array.message;
+    // console.log("reviews : ",review[0].text );
 
-        console.log(newReview);
 
-    }
 
-    // useEffect(() => {
-    // //   const url = `http://localhost:5000/appointments?email=${user.email}`;
-    //   const url = `https://jsonplaceholder.typicode.com/posts`;
-    //   fetch(url)
-    //     .then((res) => res.json())
-    //     .then((data) => setReview(data));
-    // }, []);
-    // console.log(typeof review);
-
-const initialInfo = {user}
-    const postReview = (e) => {
-        //collect data
-        const reviews = {
-            ...review,
-        }
-        console.log(reviews);
-        //send to server
-        fetch("http://localhost:5000/reviews", {
+    const handleSubmit = (e) => {
+      const newText = {text : text}
+      e.preventDefault();
+      fetch("http://localhost:5000/reviews", {
         method: "POST",
         headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(reviews),
+      body: JSON.stringify(newText),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -52,21 +44,45 @@ const initialInfo = {user}
         }
         console.log("from modal : ", data);
       });
-
-        e.preventDefault();
+      console.log("text ", text);
     }
+let len = review.length;
+
+
     return (
         <>
-        <form ref={form} onSubmit={postReview}>
-          <textarea name="message" className="user" onBlur={handlaleOnBlur} placeholder="Message"/>
+        <form ref={form} >
+          <textarea name="message" className="user" onChange={e=>setText(e.target.value)} placeholder="Message"/>
           <br />
-          <input type="submit" value="Send" className="button"/>
+          <input type="submit" value="Send" className="button" onClick={handleSubmit}/>
           <br />
           <span>{done && "Thanks for your kind review.."}</span>
         </form>
         <div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae aspernatur alias omnis iusto! Adipisci, ratione! Voluptas perspiciatis qui saepe eum quod praesentium nam laborum eius?</p>
+
+
+          length : {len}
         </div>
+
+        {/* {
+          review.map((review, index)=>{
+            return (<p>ssss</p>)
+          })
+        } */}
+          {/* {review[0].text} */}
+          {/* {
+            review.map((review, index)=>{
+              return(<p>some</p>)
+            })
+          } */}
+{/*         
+        {review.map((review) => {
+          return (
+            <p >
+            </p>
+          );
+        })}    */}
+
         </>
     );
 };

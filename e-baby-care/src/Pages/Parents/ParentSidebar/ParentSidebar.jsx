@@ -21,8 +21,8 @@ const ParentSidebar = () => {
         left : '-60%'
       }
     }
-    console.log(window.innerWidth)
-    console.log(ParentSidebarData);
+    // console.log(window.innerWidth)
+    // console.log(ParentSidebarData);
     return (
         <>
         <div className="bars" style={expanded?{left: '60%'}:{left: '5%'}} onClick={()=>setExpaned(!expanded)}>

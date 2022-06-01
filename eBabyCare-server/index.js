@@ -19,7 +19,6 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    // console.log("database connected successfully");
     const database = client.db("eBabyCare"); //database
     const appointmentsCollection = database.collection("appointments");
     const reviewCollection = database.collection("reviews");
@@ -30,7 +29,7 @@ async function run() {
       console.log("query : ", query, email);
       const cursor = appointmentsCollection.find(query);
       const appointments = await cursor.toArray();
-      console.log(appointments);
+      // console.log(appointments);
       res.json(appointments);
     });
 
