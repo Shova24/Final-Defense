@@ -8,6 +8,7 @@ import Appointment from "./Pages/Appointments/Appointment/Appointment";
 import Dashboard from "./Pages/Admin/DashBoard/Dashboard";
 import AuthProvider from "./Context/AuthProvider/AuthProvider";
 import ParentHome from "./Pages/Parents/ParentHome/ParentHome";
+import Review from "./Pages/Parents/Review/Review";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
 
             {/* Parent Routes */}
             <Route exact path="/parenthome" element={<ParentHome />} />
+            <Route exact path="/parentreview" element={<Review />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

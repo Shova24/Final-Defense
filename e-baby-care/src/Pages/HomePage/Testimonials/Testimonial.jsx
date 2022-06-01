@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Testimonial.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -9,6 +9,7 @@ import profilePic1 from "../../../img/HomePage/profile1.jpg";
 
 
 const Testimonial = () => {
+
   const clients = [
     {
       img: profilePic1,
@@ -32,6 +33,18 @@ const Testimonial = () => {
     },
   ];
 
+  const [ review, setReview] = useState({});
+
+  useEffect(() => {
+    // const url = `http://localhost:5000/appointments?email=${user.email}`;
+    const url = `https://jsonplaceholder.typicode.com/posts`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setReview(data));
+  }, []);
+
+  console.log(review[0]);
+  console.log(review);
   return (
     <div className="t-wrapper" id="testimonial">
       <div className="t-heading">
@@ -48,16 +61,17 @@ const Testimonial = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
       >
-        {clients.map((client, index) => {
+        {clients.map((review, index) => {
           return (
             <SwiperSlide key={index}>
               <div className="testimonial">
-                <img src={client.img} alt="" />
-                <span>{client.review}</span>
+                <img src={profilePic1} alt="" />
+                {/* <span>{review.title}</span> */}
               </div>
             </SwiperSlide>
           );
         })}
+
       </Swiper>
     </div>
   );

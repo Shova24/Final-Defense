@@ -22,6 +22,7 @@ async function run() {
     // console.log("database connected successfully");
     const database = client.db("eBabyCare"); //database
     const appointmentsCollection = database.collection("appointments");
+    const reviewCollection = database.collection("reviews");
 
     app.get("/appointments", async (req, res) => {
       const email = req.query.email;
@@ -37,6 +38,13 @@ async function run() {
       const appointment = req.body;
       const result = await appointmentsCollection.insertOne(appointment);
       // console.log(result);
+      res.json(result);
+    });
+
+    app.post("/reviews", async (req, res) => {
+      const review = req.body;
+      const result = await appointmentsCollection.insertOne(review);
+      console.log(result);
       res.json(result);
     });
   } finally {
