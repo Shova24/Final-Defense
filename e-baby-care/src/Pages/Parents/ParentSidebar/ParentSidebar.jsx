@@ -3,11 +3,14 @@ import './ParentSidebar.css'
 
 import Logo from "../../../img/Admin/logo.png";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
-// import { SidebarData } from "../../../Data/Data";
+
 import {ParentSidebarData} from "../../../Data/Data";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
 import { NavLink } from 'react-router-dom';
+
+import Button from '@mui/material/Button';
+import Link from '@mui/material/Link';
 
 const ParentSidebar = () => {
     const [selected, setSelected] = useState(0);
@@ -21,8 +24,6 @@ const ParentSidebar = () => {
         left : '-60%'
       }
     }
-    // console.log(window.innerWidth)
-    // console.log(ParentSidebarData);
     return (
         <>
         <div className="bars" style={expanded?{left: '60%'}:{left: '5%'}} onClick={()=>setExpaned(!expanded)}>
@@ -75,6 +76,8 @@ const ParentSidebar = () => {
               // </NavLink>
             );
           })}
+         
+          <Link href="/parentreview" underline="none"><Button sx={{textDescription:'none', color:'hotpink'}}>Write a Review</Button></Link>
   {/* signoutIcon */}
         <div>
           <NavLink to='/' style={{
