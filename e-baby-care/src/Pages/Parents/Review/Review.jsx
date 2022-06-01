@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './Review.css'
+import './Review.css';
+import useAuth from './../../../Hooks/useAuth'
 const Review = () => {
     const form = useRef();
+    const {user} = useAuth();   
+    console.log('user : ',user.email);
+
+
     const [done, setDone] = useState(false)
     const [ review, setReview] = useState({});
+
     const handlaleOnBlur = (e)=>{
         const field = e.target.name;
         const value = e.target.value;
@@ -24,7 +30,7 @@ const Review = () => {
     // }, []);
     // console.log(typeof review);
 
-
+const initialInfo = {user}
     const postReview = (e) => {
         //collect data
         const reviews = {
@@ -58,6 +64,9 @@ const Review = () => {
           <br />
           <span>{done && "Thanks for your kind review.."}</span>
         </form>
+        <div>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae aspernatur alias omnis iusto! Adipisci, ratione! Voluptas perspiciatis qui saepe eum quod praesentium nam laborum eius?</p>
+        </div>
         </>
     );
 };

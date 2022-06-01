@@ -41,11 +41,22 @@ async function run() {
       res.json(result);
     });
 
+    //Review
     app.post("/reviews", async (req, res) => {
       const review = req.body;
-      const result = await appointmentsCollection.insertOne(review);
+      const result = await reviewCollection.insertOne(review);
       console.log(result);
       res.json(result);
+    });
+
+    app.get("/reviews", async (req, res) => {
+      // const email = req.query.email;
+      // const query = { email: email };
+      // console.log("query : ", query, email);
+      const cursor_review = reviewCollection.find({});
+      const reviews = await cursor_review.toArray();
+      console.log(reviews);
+      res.json(reviews);
     });
   } finally {
     // await client.close();
