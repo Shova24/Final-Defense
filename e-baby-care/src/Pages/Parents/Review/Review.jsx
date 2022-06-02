@@ -43,11 +43,10 @@ const Review = () => {
           setDone(true);
           
         }
-        console.log("from post parent : ", data);
+        // console.log("from post parent : ", data);
       });
-    console.log("text ", text);
   };
-  let len = review.length;
+
 
   return (
     <>

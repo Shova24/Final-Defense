@@ -25,7 +25,6 @@ const Testimonial = () => {
     items.push(element);
   }
 
-console.log(items);
   return (
     <div className="t-wrapper" id="testimonial">
       <div className="t-heading">

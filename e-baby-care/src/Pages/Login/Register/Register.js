@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
-  const { user, registerUser, isLoading, authError } = useAuth();
+  const { user, registerUser, authError } = useAuth();
 
   const handleOnBlur = (e) => {
     const field = e.target.name;
@@ -31,6 +31,26 @@ const Register = () => {
     registerUser(loginData.email, loginData.password, loginData.name);
     e.preventDefault();
   };
+  //for tey
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [password, setPassword] = useState("");
+  const { signUp } = useAuth();
+  let navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      await signUp(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
     <>
@@ -40,75 +60,81 @@ const Register = () => {
             <Typography variant="body1" component="h2">
               Register Yourself
             </Typography>
-            {!isLoading && (
-              <form onSubmit={handleLogin}>
-                <TextField
+            {/* {!isLoading && ( */}
+            <form onSubmit={handleSubmit}>
+              {/* <TextField
                   sx={{ width: "75%", m: 1 }}
                   id="standard-basic"
                   label="Your Name"
-                  name="name"
-                  onBlur={handleOnBlur}
+                  name="username"
+                  type="text"
+                  // onBlur={handleOnBlur}
+                  onChange={(e) => setPassword(e.target.value)}
                   variant="standard"
                 />
-                <br />
-                <TextField
-                  sx={{ width: "75%", m: 1 }}
-                  id="standard-basic"
-                  label="Your Email"
-                  name="email"
-                  onBlur={handleOnBlur}
-                  variant="standard"
-                />
-                <br />
-                <TextField
-                  sx={{ width: "75%", m: 1 }}
-                  id="fstandard-basic"
-                  label="Password"
-                  type="password"
-                  name="password"
-                  onBlur={handleOnBlur}
-                  autoComplete="current-password"
-                  variant="standard"
-                />
-                <br />
-                <TextField
+                <br /> */}
+              <TextField
+                sx={{ width: "75%", m: 1 }}
+                id="standard-basic"
+                label="Your Email"
+                name="email"
+                type="email"
+                // onBlur={handleOnBlur}
+                onChange={(e) => setEmail(e.target.value)}
+                variant="standard"
+              />
+              <br />
+              <TextField
+                sx={{ width: "75%", m: 1 }}
+                id="fstandard-basic"
+                label="Password"
+                type="password"
+                name="password"
+                // onBlur={handleOnBlur}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                variant="standard"
+              />
+              <br />
+              {/* <TextField
                   sx={{ width: "75%", m: 1 }}
                   id="fstandard-basic"
                   label="Retype Password"
                   type="password"
                   name="password2"
-                  onBlur={handleOnBlur}
+                  // onBlur={handleOnBlur}
+                  onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
                   variant="standard"
                 />
-                <br />
-                <NavLink to="/login">
-                  <Button
-                    sx={{ width: "75%", m: 1 }}
-                    type="submit"
-                    variant="text"
-                  >
-                    {" "}
-                    Already Register?
-                  </Button>{" "}
-                </NavLink>
+                <br /> */}
+              <NavLink to="/login">
                 <Button
                   sx={{ width: "75%", m: 1 }}
                   type="submit"
-                  variant="contained"
+                  variant="text"
                 >
                   {" "}
-                  Register
-                </Button>
-              </form>
-            )}
-            {isLoading && <CircularProgress disableShrink />};
+                  Already Register?
+                </Button>{" "}
+              </NavLink>
+              <Button
+                sx={{ width: "75%", m: 1 }}
+                type="submit"
+                variant="contained"
+              >
+                {" "}
+                Register
+              </Button>
+            </form>
+            {/* {isLoading && <CircularProgress disableShrink />};
             {user?.email && (
               <Alert severity="success">
                 This is a success alert — check it out!
               </Alert>
-            )}
-            {authError && <Alert severity="error">{authError}!</Alert>};
+            )} */}
+            {/* {authError && <Alert severity="error">{authError}!</Alert>}; */}
+            {error && <Alert severity="error">{error}!</Alert>}
           </Grid>
           <Grid item xs={12} md={6}>
             <img src={Cover} style={{ width: "100%" }} alt="" />

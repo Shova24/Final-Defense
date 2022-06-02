@@ -18,6 +18,8 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import Cover from "../../../img/HomePage/Cover2.png";
 
+import GoogleButton from "react-google-button";
+
 const Login = () => {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({});
@@ -69,11 +71,39 @@ const Login = () => {
     //   });
   };
   //google sign in////////////////////////////////////////////////////////////////
-  const handleGoogleSignIn = () => {
-    signInWithGoogle().then((result) => {
-      setUser(result.user);
-      Navigate("/");
-    });
+  // const handleGoogleSignIn = () => {
+  //   signInWithGoogle().then((result) => {
+  //     setUser(result.user);
+  //     Navigate("/");
+  //   });
+  // };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { logIn, googleSignIn } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await logIn(email, password);
+      navigate("/home");
+      console.log("Loged in");
+    } catch (err) {
+      setError(err.message);
+      console.log(err.message);
+    }
+  };
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/home");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -95,13 +125,15 @@ const Login = () => {
             <Typography variant="body1" component="h2">
               Login
             </Typography>
-            <form onSubmit={handleLogin}>
+            {/* <form onSubmit={handleLogin}> */}
+            <form onSubmit={handleSubmit}>
               <TextField
                 sx={{ width: "75%", m: 1 }}
                 id="standard-basic"
                 label="Your Email"
                 name="email"
-                onBlur={handleOnChange}
+                // onBlur={handleOnChange}
+                onChange={(e) => setEmail(e.target.value)}
                 variant="standard"
               />
               <br />
@@ -111,7 +143,8 @@ const Login = () => {
                 label="Password"
                 type="password"
                 name="password"
-                onBlur={handleOnChange}
+                // onBlur={handleOnChange}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="current-password"
                 variant="standard"
               />
@@ -141,9 +174,16 @@ const Login = () => {
               {authError && <Alert severity="error">{authError}!</Alert>}
             </form>
             <p>---------------</p>
-            <Button variant="contained" onClick={handleGoogleSignIn}>
+            {/* <Button variant="contained" onClick={handleGoogleSignIn}>
               Google
-            </Button>
+            </Button> */}
+            <div>
+              <GoogleButton
+                className="g-btn"
+                type="dark"
+                onClick={handleGoogleSignIn}
+              />
+            </div>
           </Grid>
           <Grid item xs={12} md={6}>
             <img src={Cover} style={{ width: "100%" }} alt="" />

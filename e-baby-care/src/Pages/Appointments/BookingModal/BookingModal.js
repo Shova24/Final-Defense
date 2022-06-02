@@ -27,6 +27,7 @@ const BookingModal = ({
   setBookingSuccess,
 }) => {
   const { user } = useAuth();
+  console.log("Modal", user);
 
   const initialInfo = {
     parentname: user.displayName,

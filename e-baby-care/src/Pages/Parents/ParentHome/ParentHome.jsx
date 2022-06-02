@@ -3,7 +3,7 @@ import Appointment from '../../Appointments/Appointment/Appointment';
 import AppointmentsHeader from '../../Appointments/AppointmentHeader/AppointmentsHeader';
 import AvailableAppointments from '../../Appointments/AvailableAppointments/AvailableAppointments';
 import ParentSidebar from '../ParentSidebar/ParentSidebar';
-import Review from '../Review/Review';
+
 
 import './ParentHome.css'
 

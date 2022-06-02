@@ -1,7 +1,6 @@
 import React from "react";
-import Card from "../../Admin/Card/Card";
 import "./Pricing.css";
-import Container from "@mui/material/Container";
+
 import Taka from "../../../img/HomePage/taka (2).png";
 
 const Pricing = () => {
