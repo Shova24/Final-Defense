@@ -1,0 +1,56 @@
+.pricing{
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    height: 20rem;
+    margin-bottom: 2rem;
+    margin-top: 9rem;
+
+    /* scroll view */
+    padding-top: 3rem;
+}
+
+.price-card{
+    width: 15%;
+    height: 15rem;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    width: 10rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.26);
+    border: 7px solid var(--orangeCard);
+    box-shadow: var(--boxShadow);
+    border-radius: 20px;
+    padding: 0px 26px 2rem 26px;
+    margin-left: 20%;
+
+}
+
+.price-card span:nth-of-type(2) {
+    color: var(--gray);
+    font-size: 16px;
+  }
+  .price-card > img {
+    transform: scale(0.6);
+    margin-bottom: -2rem;
+    width:8rem
+    
+  }
+
+  
+  
+  @media screen and (max-width: 480px) {
+    .pricing {
+        height:rem;
+        display: none;
+    }
+  
+    .price-card  {
+        height:rem;
+        display: none;
+    }
+
+  }
