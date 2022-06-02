@@ -33,19 +33,25 @@ async function run() {
     app.get("/appointments", async (req, res) => {
       const email = req.query.email;
       const query = { email: email };
-      // console.log("query : ", query, email);
-      const cursor = appointmentsCollection.find(query);
+      let cursor;
+      console.log("query : ", query, email);
+      if (email) {
+        cursor = appointmentsCollection.find(query);
+      } else {
+        cursor = appointmentsCollection.find({});
+      }
+
       const appointments = await cursor.toArray();
       // console.log(appointments);
       res.json(appointments);
     });
 
-    app.get("/appointments", async (req, res) => {
-      const cursor = appointmentsCollection.find({});
-      const appointments = await cursor.toArray();
-      console.log(typeof appointments);
-      res.json(appointments);
-    });
+    // app.get("/appointments", async (req, res) => {
+    //   const cursor = appointmentsCollection.find({});
+    //   const appointments = await cursor.toArray();
+    //   console.log(typeof appointments);
+    //   res.json(appointments);
+    // });
 
     //Review
     app.post("/reviews", async (req, res) => {

@@ -52,7 +52,7 @@ console.log(appointments);
 
     return (
         <>
-        <li></li>
+  
         {
             appointments.map(ap=>(<li>some</li>))
         }
