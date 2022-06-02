@@ -9,8 +9,6 @@ import Vector1 from '../../../img/HomePage/Vector1.png';
 import Vector2 from '../../../img/HomePage/Vector2.png';
 import Cover from '../../../img/HomePage/Cover2.png';
 
-
-import { Grid, Paper, Typography,Container, Button, Link  } from "@mui/material";
 import { NavLink } from 'react-router-dom';
 
  

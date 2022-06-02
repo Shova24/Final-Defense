@@ -5,7 +5,7 @@ import useAuth from "../Hooks/useAuth";
 const ProtectedRoute = ({ children }) => {
   const { user } = useAuth();
 
-  console.log("Check user in Private: ", user);
+  // console.log("Check user in Private: ", user);
   if (!user) {
     return <Navigate to="/" />;
   }

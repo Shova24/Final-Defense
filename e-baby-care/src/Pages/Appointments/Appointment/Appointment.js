@@ -1,5 +1,4 @@
 import React from "react";
-import Review from "../../Parents/Review/Review";
 import AppointmentsHeader from "../AppointmentHeader/AppointmentsHeader";
 import AvailableAppointments from "../AvailableAppointments/AvailableAppointments";
 

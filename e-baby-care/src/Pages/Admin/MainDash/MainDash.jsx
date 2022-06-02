@@ -1,14 +1,22 @@
 import React from "react";
 
-import Cards from "../Cards/Cards";
+import Demo from "../Demo/Demo";
+import Sidebar from "../Sidebar/Sidebar";
 
-import Table from "../Table/Table";
 import "./MainDash.css";
 const MainDash = () => {
   return (
-    <div className="MainDash">
-      <Table />
-    </div>
+<>
+  
+  <div className="Dashboard-App">
+      <div className='AppGlass'>
+          <Sidebar/>
+          {/* <MainDash/> */}
+          <div style={{padding:'5rem'}}>
+          
+          </div>
+      </div>
+  </div></>
   );
 };
 

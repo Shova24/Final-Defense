@@ -27,7 +27,7 @@ const BookingModal = ({
   setBookingSuccess,
 }) => {
   const { user } = useAuth();
-  console.log("Modal", user);
+  // console.log("Modal", user);
 
   const initialInfo = {
     parentname: user.displayName,
@@ -35,8 +35,9 @@ const BookingModal = ({
     phone: "",
   };
   const [bookingInfo, setBookingInfo] = useState(initialInfo);
+
   const handleSubmit = (e) => {
-    console.log("clicked");
+    // console.log("clicked");
     //collect data send to
     const appointment = {
       ...bookingInfo,
@@ -58,19 +59,20 @@ const BookingModal = ({
           setBookingSuccess(true);
           handleClose();
         }
-        console.log("from modal : ", data);
+        // console.log("from modal : ", data);
       });
     // console.log(appointment);
 
     e.preventDefault();
   };
+  const email = user.email;
 
   const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
-    const newInfo = { ...bookingInfo };
+    const newInfo = { ...bookingInfo, email };
     newInfo[field] = value;
-    console.log(newInfo);
+    console.log("new info", newInfo);
     setBookingInfo(newInfo);
   };
 
@@ -84,14 +86,15 @@ const BookingModal = ({
     >
       <Box sx={style}>
         <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-          {name}
+          Booke a BabySitter
         </Typography>
         <form>
           <TextField
             disabled
             sx={{ width: "90%", m: 1 }}
             id="outlined-size-small"
-            defaultValue={time}
+            // defaultValue={time}
+            name="userEmail"
             size="small"
           />
 

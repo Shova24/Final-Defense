@@ -43,18 +43,6 @@ const bookings = [
 ];
 
 const AvailableAppointments = ({ date }) => {
-  // console.log("av: ", date);
-  function createData(name, trackingId, date, status) {
-    return { name, trackingId, date, status };
-  }
-
-  const rows = [
-    createData("Lasania Chiken Fri", 18908424, "2 March 2022", "Approved"),
-    createData("Big Baza Bang ", 18908424, "2 March 2022", "Pending"),
-    createData("Mouth Freshner", 18908424, "2 March 2022", "Approved"),
-    createData("Cupcake", 18908421, "2 March 2022", "Delivered"),
-  ];
-
   const makeStyle = (status) => {
     if (status === "Approved") {
       return {
@@ -73,24 +61,22 @@ const AvailableAppointments = ({ date }) => {
       };
     }
   };
-
-  const [bookingSuccess, setBookingSuccess] = useState(false);
   const { user } = useAuth();
-  const [appointments, setAppontments] = useState();
-  console.log(user.email);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
+  const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:5000/appointments?email=${user.email}`;
-    // const url = `https://jsonplaceholder.typicode.com/posts/1`;
-    fetch(url)
+    fetch(`http://localhost:5000/appointments?email=${user.email}`)
       .then((res) => res.json())
-      .then((data) => setAppontments(data));
+      .then((data) => {
+        setAppointments(data);
+      });
   }, []);
+
   return (
     <>
       <Container>
         <h3>Available : {date.toDateString()}</h3>
-        <h5>App : {appointments}</h5>
 
         {bookingSuccess && (
           <Alert severity="success">
@@ -117,35 +103,40 @@ const AvailableAppointments = ({ date }) => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>parent Name</TableCell>
-                  <TableCell align="left">User Phone</TableCell>
-                  <TableCell align="left">User email</TableCell>
-                  <TableCell align="left">User Phone</TableCell>
+                  <TableCell>Service Name</TableCell>
+                  <TableCell>Parent Name</TableCell>
+
+                  <TableCell align="left">Parent email</TableCell>
+                  <TableCell align="left">Contact email</TableCell>
+                  <TableCell align="left">Contact Phone</TableCell>
+                  <TableCell align="left">Booking Date</TableCell>
                   <TableCell align="left">Status</TableCell>
                   <TableCell align="left"></TableCell>
                 </TableRow>
               </TableHead>
 
+              {/* body starts here  */}
               <TableBody style={{ color: "white" }}>
-                {rows.map((row) => (
+                {appointments.map((row) => (
                   <TableRow
                     key={row.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      {row.serviceName}
                     </TableCell>
-                    <TableCell align="left">{row.trackingId}</TableCell>
-                    <TableCell align="left">{row.date}</TableCell>
-                    <TableCell align="left">{row.date}</TableCell>
+                    <TableCell align="left">{row.parentname}</TableCell>
+                    <TableCell align="left">{row.parentemail}</TableCell>
+                    <TableCell align="left">{row.email}</TableCell>
+                    <TableCell align="left">{row.phone}</TableCell>
+                    <TableCell align="left">{row.statusdate}</TableCell>
+
                     <TableCell align="left">
                       <span className="status" style={makeStyle(row.status)}>
                         {row.status}
                       </span>
                     </TableCell>
-                    <TableCell align="left" className="Details">
-                      Details
-                    </TableCell>
+                    <TableCell align="left" className="Details"></TableCell>
                   </TableRow>
                 ))}
               </TableBody>

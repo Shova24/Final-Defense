@@ -7,7 +7,7 @@ import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 
 const Calender = (props) => {
   const { date, setDate } = props;
-
+  console.log("calender : ", date);
   // const [date, setDate] = React.useState(new Date());
   // console.log("props : ", props.date);
   return (

@@ -23,21 +23,28 @@ async function run() {
     const appointmentsCollection = database.collection("appointments");
     const reviewCollection = database.collection("reviews");
 
+    //Appointments collection
+    app.post("/appointments", async (req, res) => {
+      const appointment = req.body;
+      const result = await appointmentsCollection.insertOne(appointment);
+      // console.log(result);
+      res.json(result);
+    });
     app.get("/appointments", async (req, res) => {
       const email = req.query.email;
       const query = { email: email };
-      console.log("query : ", query, email);
+      // console.log("query : ", query, email);
       const cursor = appointmentsCollection.find(query);
       const appointments = await cursor.toArray();
       // console.log(appointments);
       res.json(appointments);
     });
 
-    app.post("/appointments", async (req, res) => {
-      const appointment = req.body;
-      const result = await appointmentsCollection.insertOne(appointment);
-      // console.log(result);
-      res.json(result);
+    app.get("/appointments", async (req, res) => {
+      const cursor = appointmentsCollection.find({});
+      const appointments = await cursor.toArray();
+      console.log(typeof appointments);
+      res.json(appointments);
     });
 
     //Review
@@ -54,7 +61,7 @@ async function run() {
       // console.log("query : ", query, email);
       const cursor_review = reviewCollection.find({});
       const reviews = await cursor_review.toArray();
-      console.log(reviews);
+      // console.log(reviews);
       res.json(reviews);
     });
   } finally {

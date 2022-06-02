@@ -10,6 +10,7 @@ import AuthProvider from "./Context/AuthProvider/AuthProvider";
 import ParentHome from "./Pages/Parents/ParentHome/ParentHome";
 import Review from "./Pages/Parents/Review/Review";
 import ProtectedRoute from "./Pages/Login/ProtectedRouter";
+import AppointmentsList from "./Pages/Admin/AppointmentList/AppointmentsList";
 
 function App() {
   return (
@@ -35,6 +36,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              exact
+              path="/appointmentlist"
+              element={
+                <ProtectedRoute>
+                  <AppointmentsList />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/parents" element={<HomePage />} />
+            <Route path="/babysitters" element={<HomePage />} />
 
             {/* Parent Routes */}
             <Route
