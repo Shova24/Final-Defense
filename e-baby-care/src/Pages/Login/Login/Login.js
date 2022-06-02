@@ -1,17 +1,9 @@
 import { UilEstate } from "@iconscout/react-unicons";
-import {
-  Alert,
-  Button,
-  CircularProgress,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Alert, Button, Grid, TextField, Typography } from "@mui/material";
 
 import { Container } from "@mui/system";
 import React from "react";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
@@ -22,61 +14,7 @@ import GoogleButton from "react-google-button";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [loginData, setLoginData] = useState({});
-  const {
-    user,
-    setUser,
-    loginUser,
-    isLoading,
-    authError,
-    setAuthError,
-    signInWithGoogle,
-    isValid,
-  } = useAuth();
-
-  const handleOnChange = (e) => {
-    const field = e.target.name;
-    const value = e.target.value;
-    const newLoginData = { ...loginData }; //copying
-    newLoginData[field] = value;
-    setLoginData(newLoginData);
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setAuthError("");
-    try {
-      await loginUser(loginData.email, loginData.password);
-      console.log("login : ", user);
-      console.log(isValid);
-      if (isValid) {
-        navigate("/appointment");
-      } else {
-        navigate("/login");
-      }
-    } catch (err) {
-      setAuthError(err.message);
-    }
-    // loginUser(loginData.email, loginData.password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     console.log(user);
-    //     setUser(user);
-    //     navigate("/appointment");
-    //   })
-    //   .catch((error) => {
-    //     const errorMessage = error.message;
-    //     authError(errorMessage);
-    //   });
-  };
-  //google sign in////////////////////////////////////////////////////////////////
-  // const handleGoogleSignIn = () => {
-  //   signInWithGoogle().then((result) => {
-  //     setUser(result.user);
-  //     Navigate("/");
-  //   });
-  // };
+  const { user } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -167,11 +105,11 @@ const Login = () => {
                 {" "}
                 Login
               </Button>
-              {isLoading && <CircularProgress disableShrink />};
+
               {user?.email && (
                 <Alert severity="success">This is a success</Alert>
               )}
-              {authError && <Alert severity="error">{authError}!</Alert>}
+              {error && <Alert severity="error">{error}!</Alert>}
             </form>
             <p>---------------</p>
             {/* <Button variant="contained" onClick={handleGoogleSignIn}>

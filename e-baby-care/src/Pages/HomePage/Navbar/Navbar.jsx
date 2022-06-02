@@ -4,10 +4,9 @@ import "./Navbar.css";
 import {Link} from 'react-scroll';
 import useAuth from '../../../Hooks/useAuth';
 import { NavLink } from 'react-router-dom';
-import Button from "@mui/material/Button";
 
 const Navbar = () => {
-    const {user, logout} = useAuth();
+    const {user, logOut} = useAuth();
     return (
        <div className="n-wrapper">
            <div className="n-left">
@@ -35,7 +34,7 @@ const Navbar = () => {
 
 
                         {user?.email ? (
-                            <Link spy={true} onClick={logout} className="hov" smooth={true}activeClass='activeClass'>
+                            <Link spy={true} onClick={logOut} className="hov" smooth={true}activeClass='activeClass'>
                                 <li>logout</li></Link>) : (
                         <NavLink to="/login" className="hov">
                             <li>login</li>
