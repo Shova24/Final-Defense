@@ -16,6 +16,7 @@ import CustomerReview from "./Pages/Admin/CustomerReview/CustomerReview";
 import ReviewList from "./Pages/Admin/ReviewList/ReviewList";
 import MainDash from "./Pages/Admin/MainDash/MainDash";
 import BabySitterList from "./Pages/Admin/BabysitterList/BabySitterList";
+import AdminLogin from "./Pages/Login/Login/AdminLogin/AdminLogin";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             {/* Login\Logout */}
+            <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
 
@@ -97,6 +99,16 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ParentHome />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              exact
+              path="/parentreview"
+              element={
+                <ProtectedRoute>
+                  <Review />
                 </ProtectedRoute>
               }
             />

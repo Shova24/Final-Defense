@@ -7,8 +7,11 @@ import { SidebarData } from "../../../Data/Data";
 import { UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
 import Link from '@mui/material/Link';
+import { NavLink } from "react-router-dom";
+import useAuth from "../../../Hooks/useAuth";
 
 const Sidebar = () => {
+  const {logOut} = useAuth();
   const [selected, setSelected] = useState(0);
 
   const [expanded, setExpaned] = useState(true);
@@ -21,7 +24,6 @@ const Sidebar = () => {
       left: "-60%",
     },
   };
-  // console.log(window.innerWidth)
   return (
     <>
       <div
@@ -50,19 +52,21 @@ const Sidebar = () => {
               <div
                 className={selected === index ? "menuItem active" : "menuItem"}
                 key={index}
-                onClick={() => setSelected(index)}
+                onClick={(e) => {setSelected(index);}}
               >
                 <item.icon />
-                {/* <span>{item.heading}</span> */}
                 <Link href={item.url} sx={{textDecoration: 'none', color:'black'}}>{item.heading}</Link>
               </div>
             );
           })}
           
           {/* signoutIcon */}
-          <div className="menuItem">
-            <UilSignOutAlt />
-          </div>
+          <div>
+          <Link href='/adminlogin' className="menuItem"  sx={{textDecoration: 'none', color:'black', marginLeft: '20%'}} onClick={logOut}>
+          <UilSignOutAlt />
+          </Link>
+         
+        </div>
         </div>
       </motion.div>
     </>

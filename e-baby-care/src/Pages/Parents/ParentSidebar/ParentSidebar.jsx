@@ -11,10 +11,13 @@ import { NavLink } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
+import useAuth from '../../../Hooks/useAuth';
 
 const ParentSidebar = () => {
     const [selected, setSelected] = useState(0);
-    const [expanded, setExpaned] = useState(true)
+    const [expanded, setExpaned] = useState(true);
+
+    const {logOut} = useAuth();
   
     const sidebarVariants = {
       true: {
@@ -51,53 +54,19 @@ const ParentSidebar = () => {
                 onClick={() => setSelected(index)}
               >
                 <item.icon />
-                <span>{item.heading}</span>
+                {/* <span>{item.heading}</span> */}
+                <Link href={item.url} sx={{textDecoration: 'none', color:'black'}}>{item.heading}</Link>
               </div>
-              // <NavLink to='/' style={(true)=>{
-              //   (selected === index ){
-              //     // menuItem
-              //   display: 'flex' ,
-              //   alignItems: 'center' ,
-              //   gap: '1rem' ,
-              //   height: '2.5rem' ,
-              //   marginLeft: '2rem' ,
-              //   position: 'relative' ,
-              //   transition: 'all 300ms ease' ,
-              //   borderRadius: '0.7rem' ,
-              //   fontSize: '14px' ,
-              //   color:'black',
-              //   textDecoration: 'none',
-              //   }
-                
-    
-              // }}>
-              // <item.icon />
-              // <span>{item.heading}</span>
-              // </NavLink>
             );
           })}
          
-          <Link href="/parentreview" underline="none"><Button sx={{textDescription:'none', color:'hotpink'}}>Write a Review</Button></Link>
+
   {/* signoutIcon */}
         <div>
-          <NavLink to='/' style={{
-            display: 'flex' ,
-            alignItems: 'center' ,
-            gap: '1rem' ,
-            height: '2.5rem' ,
-            marginLeft: '2rem' ,
-            // position: 'relative' ,
-            transition: 'all 300ms ease' ,
-            borderRadius: '0.7rem' ,
-            fontSize: '14px' ,
-            color:'black',
-
-            position: 'absolute',
-            bottom: '2.3rem',
-            width: '100%',
-          }}>
+          <Link href='/' className="menuItem"  sx={{textDecoration: 'none', color:'black', marginLeft: '20%'}}
+          onClick={logOut}>
           <UilSignOutAlt />
-          </NavLink>
+          </Link>
          
         </div>
         </div>
