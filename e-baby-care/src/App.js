@@ -11,6 +11,11 @@ import ParentHome from "./Pages/Parents/ParentHome/ParentHome";
 import Review from "./Pages/Parents/Review/Review";
 import ProtectedRoute from "./Pages/Login/ProtectedRouter";
 import AppointmentsList from "./Pages/Admin/AppointmentList/AppointmentsList";
+import ParentList from "./Pages/Admin/ParentList/ParentList";
+import CustomerReview from "./Pages/Admin/CustomerReview/CustomerReview";
+import ReviewList from "./Pages/Admin/ReviewList/ReviewList";
+import MainDash from "./Pages/Admin/MainDash/MainDash";
+import BabySitterList from "./Pages/Admin/BabysitterList/BabySitterList";
 
 function App() {
   return (
@@ -28,7 +33,6 @@ function App() {
 
             {/* Admin DashBoard */}
             <Route
-              exact
               path="/dashboard"
               element={
                 <ProtectedRoute>
@@ -37,7 +41,6 @@ function App() {
               }
             />
             <Route
-              exact
               path="/appointmentlist"
               element={
                 <ProtectedRoute>
@@ -45,8 +48,47 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/parents" element={<HomePage />} />
-            <Route path="/babysitters" element={<HomePage />} />
+            <Route
+              path="/parentlist"
+              element={
+                <ProtectedRoute>
+                  <ParentList />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/appointmentlist"
+              element={
+                <ProtectedRoute>
+                  <AppointmentsList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/babysitterlist"
+              element={
+                <ProtectedRoute>
+                  <BabySitterList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reviewlist"
+              element={
+                <ProtectedRoute>
+                  <ReviewList />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <ProtectedRoute>
+                  <MainDash />
+                </ProtectedRoute>
+              }
+            />
 
             {/* Parent Routes */}
             <Route
