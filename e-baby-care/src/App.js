@@ -17,6 +17,7 @@ import ReviewList from "./Pages/Admin/ReviewList/ReviewList";
 import MainDash from "./Pages/Admin/MainDash/MainDash";
 import BabySitterList from "./Pages/Admin/BabysitterList/BabySitterList";
 import AdminLogin from "./Pages/Login/Login/AdminLogin/AdminLogin";
+import MyAppointments from "./Pages/Parents/MyAppointments/MyAppointments";
 
 function App() {
   return (
@@ -115,10 +116,10 @@ function App() {
 
             <Route
               exact
-              path="/parentreview"
+              path="/appointmentparent"
               element={
                 <ProtectedRoute>
-                  <Review />
+                  <MyAppointments />
                 </ProtectedRoute>
               }
             />

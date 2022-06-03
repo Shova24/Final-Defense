@@ -6,6 +6,7 @@ import "swiper/css";
 
 import { Pagination } from "swiper";
 import "swiper/css/pagination";
+import ParentSidebar from "../ParentSidebar/ParentSidebar";
 
 const Review = () => {
   const form = useRef();
@@ -51,28 +52,13 @@ const Review = () => {
   return (
     <>
       <div className="Dashboard-App">
+        <div className='AppGlass'>
+        <ParentSidebar/>
 
-          <div className="r-wrapper">
-            <h1>Leave us A review - </h1>
-            <hr />
-            <div className="c-right">
-              <form ref={form}>
-                <textarea
-                  name="message"
-                  className="user"
-                  onChange={(e) => setText(e.target.value)}
-                  placeholder="Message"
-                />
-                <input
-                  type="submit"
-                  value="Send"
-                  className="button"
-                  onClick={handleSubmit}
-                />
-                <span>{done && "Thanks for your kind review.."}</span>
-              </form>
-            </div>
+          <div className="r-wrapper" style={{marginTop:'2rem'}}>
 
+            <div  style={{ marginTop:'8rem'}}>
+              
             <div className="testimonial ">
               <Swiper
                 // install Swiper modules
@@ -90,6 +76,29 @@ const Review = () => {
                   );
                 })}
               </Swiper>
+            </div>
+
+            </div>
+            <h1>Leave us A review - </h1>
+            <hr />
+            <div className="c-right" style={{ marginBottom:'0rem', paddingBottom:'0rem', height:'10%'}}>
+              <form ref={form}>
+                <textarea
+                  name="message"
+                  className="user"
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Message"
+                />
+                <input
+                  type="submit"
+                  value="Send"
+                  className="button"
+                  onClick={handleSubmit}
+                />
+                <span>{done && "Thanks for your kind review.."}</span>
+              </form>
+            </div>
+
             </div>
             </div>
       </div>

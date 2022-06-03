@@ -93,7 +93,7 @@ const BookingModal = ({
             disabled
             sx={{ width: "90%", m: 1 }}
             id="outlined-size-small"
-            // defaultValue={time}
+            defaultValue="Book Your BabbySitter"
             name="userEmail"
             size="small"
           />
@@ -101,7 +101,7 @@ const BookingModal = ({
           <TextField
             sx={{ width: "90%", m: 1 }}
             id="outlined-size-small"
-            placeholder="you name"
+            placeholder="Your name"
             name="parentname"
             defaultValue={user.displayName}
             size="small"
@@ -110,7 +110,7 @@ const BookingModal = ({
           <TextField
             sx={{ width: "90%", m: 1 }}
             id="outlined-size-small"
-            placeholder="you email"
+            placeholder="Your email"
             name="parentemail"
             defaultValue={user.email}
             size="small"

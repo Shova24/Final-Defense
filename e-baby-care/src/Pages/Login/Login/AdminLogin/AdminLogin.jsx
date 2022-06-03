@@ -75,7 +75,7 @@ const AdminLogin = () => {
             />
             <br />
             <Button
-              sx={{ width: "75%", m: 1 }}
+              sx={{ width: "75%", m: 1,backgroundColor:'hotpink', marginTop:'1rem' }}
               type="submit"
               variant="contained"
             >
@@ -92,9 +92,10 @@ const AdminLogin = () => {
             </Button> */}
           <div>
             <GoogleButton
-              className="g-btn"
+              className="g-btn "
               type="dark"
               onClick={handleGoogleSignIn}
+             
             />
           </div>
         </Container>

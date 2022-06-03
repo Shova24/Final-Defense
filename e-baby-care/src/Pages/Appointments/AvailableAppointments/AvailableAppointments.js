@@ -18,28 +18,28 @@ import useAuth from "../../../Hooks/useAuth";
 const bookings = [
   {
     id: 1,
-    name: "bookin1",
-    time: "8.00 = 9.00",
+    name: "booking",
+    time: "8.00 ~ 9.00",
     space: 20,
   },
-  {
-    id: 3,
-    name: "name of booking2",
-    time: "8.00 = 9.00",
-    space: 20,
-  },
-  {
-    id: 2,
-    name: "name of booking",
-    time: "8.00 = 9.00",
-    space: 20,
-  },
-  {
-    id: 4,
-    name: "name of booking",
-    time: "8.00 = 9.00",
-    space: 20,
-  },
+  // {
+  //   id: 3,
+  //   name: "name of booking2",
+  //   time: "8.00 = 9.00",
+  //   space: 20,
+  // },
+  // {
+  //   id: 2,
+  //   name: "name of booking",
+  //   time: "8.00 = 9.00",
+  //   space: 20,
+  // },
+  // {
+  //   id: 4,
+  //   name: "name of booking",
+  //   time: "8.00 = 9.00",
+  //   space: 20,
+  // },
 ];
 
 const AvailableAppointments = ({ date }) => {

@@ -10,8 +10,8 @@ const Pricing = () => {
         {/* left side */}
         <div className="awesome">
           {/* dark mode */}
-          <span>Our Reliable</span>
-          <span>services</span>
+          <span>Our Affordable </span>
+          <span>Pricing</span>
           <span>
             Lorem ispum is simpley dummy text of printing of printing Lorem
             <br />
