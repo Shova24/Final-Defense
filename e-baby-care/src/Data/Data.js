@@ -54,11 +54,6 @@ export const ParentSidebarData = [
     heading: "Dashboard",
     url: "/parenthome",
   },
-  {
-    icon: UilClipboardAlt,
-    heading: "Appointments",
-    url: "/appointmentparent",
-  },
 
   {
     icon: UilSignOutAlt,

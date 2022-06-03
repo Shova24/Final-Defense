@@ -17,7 +17,6 @@ import ReviewList from "./Pages/Admin/ReviewList/ReviewList";
 import MainDash from "./Pages/Admin/MainDash/MainDash";
 import BabySitterList from "./Pages/Admin/BabysitterList/BabySitterList";
 import AdminLogin from "./Pages/Login/Login/AdminLogin/AdminLogin";
-import MyAppointments from "./Pages/Parents/MyAppointments/MyAppointments";
 
 function App() {
   return (
@@ -29,11 +28,9 @@ function App() {
             <Route path="/adminlogin" element={<AdminLogin />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-
             {/* Homepage */}
             <Route exact path="/" element={<HomePage />} />
             <Route path="/home" element={<HomePage />} />
-
             {/* Admin DashBoard */}
             <Route
               path="/dashboard"
@@ -59,7 +56,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
             <Route
               path="/appointmentlist"
               element={
@@ -92,7 +88,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
             {/* Parent Routes */}
             <Route
               exact
@@ -103,7 +98,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
             <Route
               exact
               path="/parentreview"
@@ -113,15 +107,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-
-            <Route
-              exact
-              path="/appointmentparent"
-              element={
-                <ProtectedRoute>
-                  <MyAppointments />
-                </ProtectedRoute>
-              }
             />
           </Routes>
         </BrowserRouter>
