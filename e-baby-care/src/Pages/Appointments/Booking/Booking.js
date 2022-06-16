@@ -4,9 +4,10 @@ import { Button } from "@mui/material";
 
 import BookingModal from "../BookingModal/BookingModal";
 
-const Booking = ({ date, booking, space, setBookingSuccess }) => {
+const Booking = ({ date, booking, space, setBookingSuccess, selectedDay }) => {
   const { name, time } = booking;
   // console.log(time);
+  // console.log(selectedDay, " Modal");
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

@@ -22,12 +22,14 @@ const BookingModal = ({
   time,
   name,
   date,
+  selectedDay,
   open,
   handleClose,
   setBookingSuccess,
 }) => {
   const { user } = useAuth();
   // console.log("Modal", user);
+  console.log(selectedDay, "bk");
 
   const initialInfo = {
     parentname: user.displayName,
@@ -37,8 +39,6 @@ const BookingModal = ({
   const [bookingInfo, setBookingInfo] = useState(initialInfo);
 
   const handleSubmit = (e) => {
-    // console.log("clicked");
-    //collect data send to
     const appointment = {
       ...bookingInfo,
       time,
@@ -59,9 +59,7 @@ const BookingModal = ({
           setBookingSuccess(true);
           handleClose();
         }
-        // console.log("from modal : ", data);
       });
-    // console.log(appointment);
 
     e.preventDefault();
   };
@@ -93,7 +91,7 @@ const BookingModal = ({
             disabled
             sx={{ width: "90%", m: 1 }}
             id="outlined-size-small"
-            defaultValue="Book Your BabbySitter"
+            defaultValue={date.toDateString()}
             name="userEmail"
             size="small"
           />

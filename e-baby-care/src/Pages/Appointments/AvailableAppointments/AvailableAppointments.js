@@ -22,24 +22,6 @@ const bookings = [
     time: "8.00 ~ 9.00",
     space: 20,
   },
-  // {
-  //   id: 3,
-  //   name: "name of booking2",
-  //   time: "8.00 = 9.00",
-  //   space: 20,
-  // },
-  // {
-  //   id: 2,
-  //   name: "name of booking",
-  //   time: "8.00 = 9.00",
-  //   space: 20,
-  // },
-  // {
-  //   id: 4,
-  //   name: "name of booking",
-  //   time: "8.00 = 9.00",
-  //   space: 20,
-  // },
 ];
 
 const AvailableAppointments = ({ date }) => {
@@ -72,6 +54,8 @@ const AvailableAppointments = ({ date }) => {
         setAppointments(data);
       });
   }, []);
+  const selectedDay = date.toDateString();
+  // console.log(selectedDay);
 
   return (
     <>
@@ -88,6 +72,7 @@ const AvailableAppointments = ({ date }) => {
             key={booking.id}
             booking={booking}
             date={date}
+            selectedDay={selectedDay}
             setBookingSuccess={setBookingSuccess}
           ></Booking>
         ))}
