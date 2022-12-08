@@ -1,5 +1,4 @@
 import React from 'react';
-
 import "./Navbar.css";
 import {Link} from 'react-scroll';
 import useAuth from '../../../Hooks/useAuth';
@@ -12,7 +11,6 @@ const Navbar = () => {
            <div className="n-left">
                <div className="n-name">
                eBabyCare
-    
                 </div>
                 {/* <Toggle/> */}
             </div>
